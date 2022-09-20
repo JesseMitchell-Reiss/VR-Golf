@@ -1857,13 +1857,13 @@ MonoBehaviour:
   m_EnableMouseInput: 1
   m_EnableTouchInput: 1
   m_PointAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
+  m_LeftClickAction: {fileID: -2775837120590753941, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: -681151063944262417, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   m_ScrollWheelAction: {fileID: 0}
   m_NavigateAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
+  m_SubmitAction: {fileID: -160020527567978557, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  m_CancelAction: {fileID: -5294950080248747617, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   m_EnableBuiltinActionsAsFallback: 1
   m_EnableGamepadInput: 1
   m_EnableJoystickInput: 1
