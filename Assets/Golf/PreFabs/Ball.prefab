@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7408301335126060612}
   - component: {fileID: 7408301335126060611}
   - component: {fileID: 7408301335126060610}
+  - component: {fileID: 3905690998354000855}
   m_Layer: 7
   m_Name: Ball
   m_TagString: Ball
@@ -92,7 +93,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7408301335126060609}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d2f2263a0c510ad438853a0439d50887, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -114,3 +115,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &3905690998354000855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408301335126060609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9105786891684b442948436d6a8f402b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastLocation: {x: 0, y: 0, z: 0}
+  score: 0
+  selectAction:
+    m_Name: Select
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2873496c-dcae-41c1-9922-69ae7610b870
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ac813537-e752-4fbc-93f6-ab497d16c2ad
+      m_Path: <XRController>{RightHand}/primaryButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Select
+      m_Flags: 0
+    m_Flags: 0
