@@ -30,7 +30,7 @@ public class Hole : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             //start.AddPoints(pointValue);
-            //EndLevel();
+            LevelManager.nextLevel();
         }
     }
 
