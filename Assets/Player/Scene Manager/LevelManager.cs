@@ -17,6 +17,14 @@ public class LevelManager : MonoBehaviour
 
     public void gameStart(int holes = 9)
     {
+        //load all asset bundless and append to list
+        List<AssetBundle> bundles = new List<AssetBundle>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length);
+        int iterator = 0;
+        foreach(string i in System.IO.Directory.GetFiles(Application.streamingAssetsPath))
+        {
+            bundles[iterator] = AssetBundle.LoadFromFile(i);
+            iterator++;
+        }
         // get scenes and add to allHoles
         int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
         allHoles = new List<Scene>(sceneCount);
