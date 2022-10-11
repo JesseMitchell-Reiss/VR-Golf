@@ -14,18 +14,17 @@ public class LevelManager : MonoBehaviour
 
     int currentHole;
     int holeCount;
-    List<Scene> allHoles;
-    List<Scene> usedHoles;
+    List<string> usedHoles;
 
     public void gameStart(int holes = 9)
     {
         // load all asset bundless and append to list
         // determine number of total asset bundles
         // create lists for scenes and other
-        List<AssetBundle> sceneBundles = new List<AssetBundle>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4);
-        List<AssetBundle> otherBundles = new List<AssetBundle>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4); 
-        int sceneBundleIterator = 0;
-        int otherBundleIterator = 0;
+        List<string> scenePaths = new List<string>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4);
+        List<string> otherPaths = new List<string>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4); 
+        int scenePathIterator = 0;
+        int otherPathIterator = 0;
         // assign each bundle to an index
         foreach(string i in System.IO.Directory.GetFiles(Application.streamingAssetsPath))
         {
@@ -35,29 +34,24 @@ public class LevelManager : MonoBehaviour
                 // separate bundles into scenes and other
                 if(i.Contains("scene"))
                 {
-                    sceneBundles[sceneBundleIterator] = AssetBundle.LoadFromFile(i);
-                    sceneBundleIterator++;
+                    scenePaths[scenePathIterator] = i;
+                    scenePathIterator++;
                 }
                 else
                 {
-                    otherBundles[otherBundleIterator] = AssetBundle.LoadFromFile(i);
-                    otherBundleIterator++;
+                    otherPaths[otherPathIterator] = i;
+                    otherPathIterator++;
                 }
             }
         }
-        // get scenes and add to allHoles
-        int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
-        allHoles = new List<Scene>(sceneCount);
-        for(int i = 2; i < sceneCount; i++)
+        // load all non scene assets from bundles
+        foreach (string i in otherPaths)
         {
-            // get scene by index and add to list skipping scenes 0 and 1
-            allHoles[i - 2] = UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(i);
+            AssetBundle.LoadFromFile(i).LoadAllAssets();
         }
-        currentHole = 0;
-        holeCount = holes;
         // randomize holes list and add to used holes
         var rnd = new System.Random();
-        var rndLst = allHoles.OrderBy(item => rnd.Next());
+        var rndLst = scenePaths.OrderBy(item => rnd.Next());
         int index = 0;
         foreach(var scene in rndLst)
         {
@@ -69,8 +63,10 @@ public class LevelManager : MonoBehaviour
             else
                 break;
         }
-        // load next scene
-        SceneManager.LoadScene(usedHoles[currentHole].name);
+        // load first scene
+        holeCount = usedHoles.Count;
+        currentHole = 0;
+        SceneManager.LoadScene(AssetBundle.LoadFromFile(usedHoles[currentHole]).GetAllScenePaths()[0]);
     }
 
     public void nextLevel()
@@ -78,7 +74,7 @@ public class LevelManager : MonoBehaviour
         currentHole++;
         if(currentHole < holeCount)
         {
-            SceneManager.LoadScene(usedHoles[currentHole].name);
+            SceneManager.LoadScene(AssetBundle.LoadFromFile(usedHoles[currentHole]).GetAllScenePaths()[0]);
         }
         else
         {
