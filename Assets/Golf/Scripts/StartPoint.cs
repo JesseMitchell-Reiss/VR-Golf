@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class StartPoint : MonoBehaviour
 {
-    public int points;
-    public Text strokeText;
-    public Text winText;
     public int numberOfBalls = 1;
     public int ballsRemaining;
     public float ballSpawn;
@@ -23,12 +20,6 @@ public class StartPoint : MonoBehaviour
         LoadNewGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void LoadBalls(int _numberOfBalls)
     {
         for (int i = 0; i < _numberOfBalls; i++)
@@ -39,28 +30,11 @@ public class StartPoint : MonoBehaviour
         }
     }
 
-    void SetStrokeText()
-    {
-        strokeText.text = "Strokes: " + points.ToString();
-        
-    }
-
-    /*
-    public void AddPoints(int value)
-    {
-        points += value;
-        SetCountText();
-    }
-    */
-
     public void LoadNewGame()
     {
         club.strokeCount = 0;
         
-        points = 0;
         ballSpawn = -1.9f;
-        SetStrokeText();
-        winText.text = "";
         LoadBalls(numberOfBalls);
     }
 }

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ClubHeadFollower : MonoBehaviour
-
-
 {
 	private ClubHead clubFollower;
 	private Rigidbody rb;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +6,12 @@ public class BallManager : MonoBehaviour
 {
     public Vector3 lastLocation;
 
-    public int score;
-
     public InputAction selectAction;
 
     private void Start()
     {
         lastLocation = this.transform.position;
-        score = 0;
+        GameObject.FindObjectOfType<LevelManager>().score++;
         selectAction.Enable();
         selectAction.started += context => MoveToBall();
     }
@@ -27,13 +23,13 @@ public class BallManager : MonoBehaviour
             GameObject XRSetup = FindObjectOfType<XROrigin>().gameObject;
             XRSetup.transform.position = this.transform.position + new Vector3(0f, 0.95f, 0f);
             lastLocation = this.transform.position;
-            score++;
+            GameObject.FindObjectOfType<LevelManager>().score++;
         }
     }
     
     public void OutOfBounds()
     {
         this.transform.position = lastLocation;
-        score++;
+        GameObject.FindObjectOfType<LevelManager>().score++;
     }
 }

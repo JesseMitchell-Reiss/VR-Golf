@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Golf/Golf Course.unity
-    guid: c495221fb2997487fbdb14bc392f030d
+    path: Assets/Scenes/LevelManager.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: dacd514e5a8f1af4885ff180ef4d3e05
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 77ddd90f2c042421da4b2b2008561e42, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: c9efa3dd72d39426a9f57b890ed7673d, type: 2}

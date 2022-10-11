@@ -10,16 +10,21 @@ public class LevelManager : MonoBehaviour
      * All assets that are not C# scripts must be stored in asset bundles within the /Assets/StreamingAssets directory
      * They must be bundled up into two separate bundles per student, one for the scene and one for assets
      * All C# scripts must be stored in a separate folder and compiled with the project
+     * start scene must have build index 0
+     * end scene must have build index 1
      */
 
     int currentHole;
     int holeCount;
     List<string> usedHoles;
+    public int score;
 
     public void gameStart(int holes = 9)
     {
-        // load all asset bundless and append to list
-        // determine number of total asset bundles
+        // set score to 0
+        score = 0;
+        // initialize holescores
+        ScoreTracker.levelScores = new int[holes];
         // create lists for scenes and other
         List<string> scenePaths = new List<string>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4);
         List<string> otherPaths = new List<string>(System.IO.Directory.GetFiles(Application.streamingAssetsPath).Length / 4); 
@@ -71,14 +76,17 @@ public class LevelManager : MonoBehaviour
 
     public void nextLevel()
     {
+        ScoreTracker.levelScores[currentHole] = score;
         currentHole++;
         if(currentHole < holeCount)
         {
+            // load next scene
             SceneManager.LoadScene(AssetBundle.LoadFromFile(usedHoles[currentHole]).GetAllScenePaths()[0]);
         }
         else
         {
             // end behavior
+            SceneManager.LoadScene(1);
         }
     }
 }
